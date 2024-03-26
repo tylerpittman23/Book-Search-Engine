@@ -7,7 +7,6 @@ const resolvers = {
             return await User.find();
         },
         getSingleUser: async (parent, args, context) => {
-            console.log(context.user)
             if (context.user) {
                 return await User.findById(context.user._id)
             }
@@ -67,7 +66,6 @@ const resolvers = {
                 if (!context.user) {
                     throw AuthenticationError
                 }
-                console.log(bookId)
                 const updatedUser = await User.findByIdAndUpdate(
                     context.user._id,
                     { $pull: { savedBooks: { bookId: bookId } }},

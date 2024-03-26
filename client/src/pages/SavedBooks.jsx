@@ -60,7 +60,6 @@ const SavedBooks = () => {
       const { data } = await deleteBook({
         variables: { bookId }
       });
-      console.log(data.deleteBook)
       setUserData(data.deleteBook);
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
