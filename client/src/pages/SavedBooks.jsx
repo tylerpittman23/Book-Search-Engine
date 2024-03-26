@@ -33,26 +33,19 @@ const SavedBooks = () => {
           return false;
         }
 
-        if (data && data.getSingleUser) {
-          setUserData(data.getSingleUser);
-        }       
-        console.log(userData) 
-        
+        if(loading) {
+          return false
+        } else {
+          setUserData(data.getSingleUser)
+        }
 
-        // const response = await getMe(token);
-
-        // if (!response.ok) {
-        //   throw new Error('something went wrong!');
-        // }
-
-        // const user = await response.json();
       } catch (err) {
         console.error(err);
       }
     };
 
     getUserData();
-  }, [userDataLength]);
+  }, [loading]);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
@@ -63,13 +56,7 @@ const SavedBooks = () => {
     }
 
     try {
-      // const response = await deleteBook(bookId, token);
 
-      // if (!response.ok) {
-      //   throw new Error('something went wrong!');
-      // }
-
-      // const updatedUser = await response.json();
       const { data } = await deleteBook({
         variables: { bookId }
       });
